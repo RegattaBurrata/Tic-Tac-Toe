@@ -71,7 +71,7 @@ const gameBoard = (() => {
         })
     })
 
-    return {boardArray, gameCounter}
+    return {boardArray, gameCounter, gameboardContainer, playerOneLabel, playerTwoLabel}
 })();
 
 const game = (() => {
@@ -81,9 +81,6 @@ const game = (() => {
     const playerTwo = playerFactory('Player Two', 'o');
 
     const scorebug = document.querySelector('.score')
-    let gameboardContainer = document.querySelector('.gameboardContainer');
-    const playerOneLabel = document.querySelector('.player-one');
-    const playerTwoLabel = document.querySelector('.player-two');
     
     //Turns
     let activePlayer = playerOne;
@@ -108,7 +105,6 @@ const game = (() => {
             if (gameBoard.boardArray[item[0]] === this.activePlayer.marker && gameBoard.boardArray[item[1]] === this.activePlayer.marker && gameBoard.boardArray[item[2]] === this.activePlayer.marker) {
                 declareWinner(this.activePlayer.name);
                 winnerExists = true;
-                console.log(winnerExists);
                 gameBoard.boardArray = [];
                 for (let i = 0; i < 9; i++) {
                     gameBoard.boardArray.push('');
@@ -121,9 +117,9 @@ const game = (() => {
     function declareWinner(winner) {
         winnerCaps = winner.toUpperCase();
         opacity = '.2';
-        gameboardContainer.style.opacity = opacity;
-        playerOneLabel.style.opacity = opacity;
-        playerTwoLabel.style.opacity = opacity;
+        gameBoard.gameboardContainer.style.opacity = opacity;
+        gameBoard.playerOneLabel.style.opacity = opacity;
+        gameBoard.playerTwoLabel.style.opacity = opacity;
         winnerExists.value = true;
         scorebug.textContent = `${winnerCaps} WINS!`
     }
@@ -131,10 +127,11 @@ const game = (() => {
     function declareDraw() {
         console.log('its a draw')
         gameBoard.gameCounter = 0;
+        scorebug.textContent = "It's a draw!"
     }
 
     function endGame() {
-        
+        gameBoard.gameboardContainer.innerHTML = '';
     }
 
     return {activePlayer, playerOne, playerTwo, checkWinner, declareWinner, declareDraw, winnerExists, endGame}
