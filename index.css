@@ -1,0 +1,34 @@
+:root {
+
+}
+
+body {
+
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 1fr;
+    height: 100vh;
+}
+
+.gameboardContainer {
+    display: grid;
+    grid-template-columns: 10vw 10vw 10vw;
+    grid-template-rows: 10vw 10vw 10vw;
+    gap: 10px;
+    justify-items: center;
+    align-items: center;
+    justify-self: center;
+    align-self: center;
+    background: rgb(234, 234, 234);
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.square {
+    width: 100%;
+    height: 100%;
+    background: rgb(251, 251, 251);
+    border-radius: 10px;
+}
